@@ -10,8 +10,8 @@ const Login = () => {
         <div className={styles.form}>
             <div className='--flex-center'>
                 <BiLogIn size={35} color="#999" />
+                </div>
                 <h2>Log In</h2>
-            </div>
             <form>
               <input type="text" placeholder='Email' required name='Email'/>
               <input type="password"  placeholder='Password' required name='password'/>
