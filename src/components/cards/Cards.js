@@ -1,4 +1,4 @@
-import style from "./Cards.scss"
+import style from "../cards/Cards.module.scss"
 const Cards = ({children , classCard}) => {
   return (
     <div className={`${style.card} ${classCard}` }>
