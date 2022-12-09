@@ -21,7 +21,7 @@ const Register = () => {
               <button type='submit' className='--btn --btn-primary --btn-block'>Register</button>
             </form>
             <span className={styles.register}>
-              <Link to="/home">Home</Link>
+              <Link to="/">Home</Link>
               <p>&nbsp; Already have an account? &nbsp;</p>
               <Link to="/login">Login</Link>
             </span>

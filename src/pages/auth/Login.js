@@ -19,7 +19,7 @@ const Login = () => {
             </form>
             <Link to="/forgot">Forgot Password</Link>
             <span className={styles.register}>
-              <Link to="/home">Home</Link>
+              <Link to="/">Home</Link>
               <p>&nbsp; Don't have a account? &nbsp;</p>
               <Link to="/register">Register</Link>
             </span>
