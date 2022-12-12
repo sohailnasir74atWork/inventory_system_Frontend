@@ -12,7 +12,7 @@ const Loader = () => {
         </div>
 
     </div>,
-    document.getElementById("loading")
+    document.getElementById("loader")
     
   )
 }
