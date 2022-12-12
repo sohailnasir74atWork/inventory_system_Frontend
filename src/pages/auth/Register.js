@@ -8,6 +8,8 @@ import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux'
 import { SET_LOGIN, SET_NAME } from '../../Redux/feature/auth/authSlice'
+import Loader from '../../components/loader/Loader'
+
 
 
 const initialData = {
@@ -31,6 +33,7 @@ const Register = () => {
   }
   const register = async (e)=>{
     e.preventDefault()
+
     if(!name || !email || !password || !password2){
       toast.error("All fields must be entered")
     }
@@ -61,6 +64,7 @@ const Register = () => {
   }
   return (
     <div className={`container ${styles.auth}`}>
+      {isLoading && <Loader/>}
       <Card>
         <div className={styles.form}>
             <div className='--flex-center'>
