@@ -24,3 +24,21 @@ export const registerUser = async (userData)=>{
     
 
 }
+
+/////////////////////////////////LOGIN /////////////////////////////////////////
+export const loginUser = async (userData)=>{
+    
+    try {
+        const response = await axios.post(`${BACKEND_URL}/api/users/login`, userData, {withCredentials: true} )
+        if(response.statusText==="OK"){
+                toast.success("Login Successfully.....")
+        }
+        return response.data
+        
+    } catch (error) {
+        const message = error.response.data.message  || error.message || error.toStringyfy()
+        toast.error(message)
+    }
+    
+
+}
