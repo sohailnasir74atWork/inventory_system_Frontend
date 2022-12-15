@@ -4,6 +4,36 @@ import {BiLogIn} from "react-icons/bi"
 import { Link } from 'react-router-dom'
 
 const Login = () => {
+     e.preventDefault()
+
+    if(!name || !email || !password || !password2){
+      toast.error("All fields must be entered")
+    }
+    if(password !== password2){
+      toast.error("Please type correct password")
+    }
+    if(password.length<6){
+      toast.error("Passowrd must be at least 6 digits")
+    }
+    if(!emailValidation){
+      toast.error("Email is not valid")
+    }
+    const userData = {name, email, password}
+    setIsLoading(true)
+    try {
+      const data = await registerUser(userData)
+      await despatch(SET_LOGIN(true))
+      await despatch(SET_NAME(data.name))
+      navigate("/dashboard")
+      setIsLoading(false)
+      
+    } catch (error) {
+      setIsLoading(false)
+      console.log(error.message);
+    }
+    
+
+  }
   return (
     <div className={`container ${styles.auth}`}>
       <Card>
