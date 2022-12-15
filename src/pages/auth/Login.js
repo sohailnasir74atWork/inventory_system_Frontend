@@ -11,8 +11,8 @@ import Loader from '../../components/loader/Loader'
 
 
 const initialData = {
-  name: "",
   email: "",
+  password: "",
 }
 const Login = () => {
   const despatch = useDispatch()
