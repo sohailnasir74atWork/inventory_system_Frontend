@@ -1,7 +1,7 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { name, SET_LOGIN } from "../../Redux/feature/auth/authSlice";
+import { selectName, SET_LOGIN } from "../../Redux/feature/auth/authSlice";
 import { logoutUser } from "../../Redux/feature/auth/services/authServices";
 
 
@@ -10,6 +10,7 @@ import { logoutUser } from "../../Redux/feature/auth/services/authServices";
 const Header = () => {
   const despatch = useDispatch()
   const navigate = useNavigate()
+  const name = useSelector(selectName)
   const logout = async ()=>{
     
     await logoutUser()
