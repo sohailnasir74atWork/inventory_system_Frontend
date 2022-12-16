@@ -9,14 +9,28 @@ import Home from "./pages/home/home";
 import Sidebar from "./components/sidebar/Sidebar";
 import { ToastContainer } from "react-toastify";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { getLoginStatus } from "./Redux/feature/auth/services/authServices";
+import { useEffect } from "react";
+import { SET_LOGIN } from "./Redux/feature/auth/authSlice";
 axios.defaults.withCredentials = true
 
 
 
 
 function App() {
+  const dispatch = useDispatch();
+
+  // Check if user is logged in
+  useEffect(() => {
+    async function loginStatus() {
+      const status = await getLoginStatus();
+      dispatch(SET_LOGIN(status));
+    }
+    loginStatus();
+  }, [dispatch]);
   return (
-    <BrowserRouter>
+    <BrowserRouter> 
     <ToastContainer/>
     <Routes>
     <Route path="/" element={<Home/>}/>

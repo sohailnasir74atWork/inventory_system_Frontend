@@ -3,6 +3,7 @@ import {RiProductHuntLine} from "react-icons/ri"
 import { Link } from 'react-router-dom'
 import "./home.scss"
 import heroImg from "../../assets/inv-img.png"
+import { WhenLogedIn, WhenLogedOut } from '../../components/protected/hideShowHome'
 
 const Home = () => {
   return (
@@ -12,19 +13,25 @@ const Home = () => {
                 <RiProductHuntLine size={35}/>
             </div>
             <ul className='home-links'>
+                <WhenLogedOut>
                 <li>
                     <Link to={"/register"}>Register</Link>
                 </li>
+                </WhenLogedOut>
+                <WhenLogedIn>
                 <li>
                     <button className='--btn --btn-primary'>
                     <Link to={"/dashboard"}>Dashboard</Link>
                     </button>
                 </li>
+                </WhenLogedIn>
+                <WhenLogedOut>
                 <li>
                     <button className='--btn --btn-primary'>
                     <Link to={"/login"}>Login</Link>
                     </button>
                 </li>
+                </WhenLogedOut>
             </ul>
             
         </nav>
