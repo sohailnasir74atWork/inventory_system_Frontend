@@ -1,15 +1,17 @@
 import styles from '../auth/auth.module.scss'
 import Card from '../../components/cards/Cards'
 import {MdPassword } from "react-icons/md"
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
 import { resetPassword } from '../../Redux/feature/auth/services/authServices'
 import { toast } from 'react-toastify'
+
 const initialData = {
   password:"",
   password2:""
 }
 const Rest = () => {
+  const navigate = useNavigate()
   const [fromData, setFormData] = useState(initialData)
   const {password, password2} = fromData
   const {resetToken} = useParams()
@@ -25,13 +27,15 @@ const reset = async(e)=>{
   if(password !== password2){
     return  toast.error("Please enter correct password")
    }
-   const userData = {password, password2}
+   const userData = {
+    password,
+  }
    try
   {
-  console.log(userData, resetToken);
-  const data = await resetPassword(userData, resetToken)
-  toast.success(data.message)}catch(error){
-  toast.error(error.message)
+  await resetPassword(userData, resetToken)
+  navigate("/login")
+}catch(error){
+  console.log(error.message);
   }
 
 }
