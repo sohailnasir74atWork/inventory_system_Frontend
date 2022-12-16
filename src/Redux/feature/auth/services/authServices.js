@@ -73,10 +73,10 @@ export const forgetPassword = async (userData)=>{
 export const resetPassword = async (userData, resetToken)=>{
     
     try {
-        const response = await axios.put(`${BACKEND_URL}/api/users//resetpassword/${resetToken}`, userData, {withCredentials: true})  
-        if(response.statusText==="OK"){
+        const response = await axios.put(`${BACKEND_URL}/api/users//resetpassword/${resetToken}`, userData)  
+       
            return response.data
-    }
+    
      
     } catch (error) {
         const message = error.response.data.message  || error.message || error.toStringyfy()
