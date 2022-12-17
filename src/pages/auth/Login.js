@@ -4,7 +4,7 @@ import {BiLogIn} from "react-icons/bi"
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { useState } from 'react'
-import { emailValidation, loginUser } from '../../Redux/feature/auth/services/authServices'
+import { emailValidation, getLoginStatus, loginUser } from '../../Redux/feature/auth/services/authServices'
 import { SET_LOGIN, SET_NAME } from '../../Redux/feature/auth/authSlice'
 import { useDispatch } from 'react-redux'
 import Loader from '../../components/loader/Loader'
@@ -47,6 +47,7 @@ const Login = () => {
       await despatch(SET_NAME(data.name))
       navigate("/dashboard")
       setIsLoading(false)
+      getLoginStatus()
       
     } catch (error) {
       setIsLoading(false)
