@@ -74,7 +74,7 @@ export const forgetPassword = async (userData)=>{
 export const resetPassword = async (userData, resetToken)=>{
     
     try {
-        const response = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/users/resetpassword/${resetToken}`, userData)  
+        const response = await axios.put(`${BACKEND_URL}/api/users/resetpassword/${resetToken}`, userData)  
         toast.success("Logedin successfully.....")
         return response.data
     
@@ -90,7 +90,7 @@ export const resetPassword = async (userData, resetToken)=>{
 export const getLoginStatus = async ()=>{
     
     try {
-        const response = await axios.get("http://localhost:5000/api/users/logedinstatus", {withCredentials: true});
+        const response = await axios.get(`${BACKEND_URL}/api/users/logedinstatus`);
         console.log(response.data);
         return response.data;
     } catch (error) {
