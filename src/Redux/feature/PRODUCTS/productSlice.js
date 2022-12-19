@@ -15,7 +15,7 @@ const createProduct = createAsyncThunk(
     "products/create",
     async(userData, thunkAPI)=>{
         try {
-            return await productServices.createNewProduct
+            return await productServices.createNewProduct(userData)
             
         } catch (error) {
         const message = error.response.data.message  || error.message || error.toStringyfy()
