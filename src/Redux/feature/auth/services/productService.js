@@ -10,8 +10,15 @@ export const createNewProduct = async (userData)=>{
     return response.data
 
     }
+///////////////////////getAll Products//////////////////
+
+export const getAllProduct = async ()=>{
+    const response = await axios.get(`${BACKEND_URL}/api/products/getproducts`)
+    return response.data
+
+    }
 
 const productServices = {
-    createNewProduct,
+    createNewProduct, getAllProduct
 }
 export default productServices

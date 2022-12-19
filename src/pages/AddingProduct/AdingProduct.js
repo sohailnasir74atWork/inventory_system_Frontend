@@ -3,23 +3,24 @@ import  {useDispatch, useSelector}  from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Loader from '../../components/loader/Loader'
 import ProductForm from '../../components/productForm/ProductForm'
-import { createNewProduct } from '../../Redux/feature/auth/services/productService'
-import { selectIsLoading } from '../../Redux/feature/PRODUCTS/productSlice'
+import { createProduct, selectIsError, selectIsLoading, selectIsSuccess } from '../../Redux/feature/PRODUCTS/productSlice'
 
 
 
 const initialState = {
-    name:"", catagory: "", quantity: "", price:""
+    name:"", category: "", quantity: "", price:""
 }
 
 const AdingProduct = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [product, setProduct]= useState(initialState)
-    const [image, setImage]= useState(null)
-    const [showImage, setShowImage]= useState("")
+    const [image, setImage]= useState("")
+    const [showImage, setShowImage]= useState(null)
     const [description, setDescription]= useState("")
     const isLoading = useSelector(selectIsLoading)
+    // const isError = useSelector(selectIsError)
+    // const isSuccess = useSelector(selectIsSuccess)
     const {name, category, quantity, price} = product
 ///////////////////////////////////input changes //////////////////////////////////////////////////
 const hanleInputChange = async(e)=>{
@@ -50,8 +51,9 @@ const saveProduct= async(e)=>{
     formData.append("description", description)  
     formData.append("sku", generateSKU(category)) 
     console.log(...formData);
-    await dispatch(createNewProduct)  
-    navigate("/dashboard")   
+    await dispatch(createProduct(formData)) 
+    
+    navigate("/dashboard")
 }
   return (
 
@@ -59,14 +61,14 @@ const saveProduct= async(e)=>{
         {isLoading && <Loader/>}
         <h3 className='--mt'>Add a New Product</h3>
         <ProductForm
-        setShowImage={setShowImage}
+        // setShowImage={setShowImage}
         product={product}
         hanleInputChange={hanleInputChange}
         image={image}
         showImage={showImage}
         description={description}
         hanleInputImageChange={hanleInputImageChange}
-        generateSKU={generateSKU}
+        // generateSKU={generateSKU}
         saveProduct={saveProduct}
         setDescription={setDescription}
 

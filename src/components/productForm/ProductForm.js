@@ -7,8 +7,7 @@ import Cards from '../cards/Cards';
 const ProductForm = ({
     product,
     hanleInputChange,
-    setShowImage,
-    image,
+    
     showImage,
     description,
     setDescription,
