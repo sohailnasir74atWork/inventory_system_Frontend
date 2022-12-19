@@ -52,5 +52,6 @@ const productSlice = createSlice({
         })
     }
 })
+export const selectIsLoading = (state) => state.product.isLoading
 export const {CLAC_STORE_VALUE} = productSlice.actions
 export default productSlice.reducer
