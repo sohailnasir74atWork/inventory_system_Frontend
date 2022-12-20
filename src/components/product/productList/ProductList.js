@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { SpiningImg } from '../../loader/Loader'
 import "./productList.scss"
 import { AiOutlineEye } from "react-icons/ai";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import Search from '../../Search/Search';
+import { FILTER_PRODUCT, selectFilterProduct } from '../../../Redux/feature/filter/filterSlice';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 const ProductList = ({isLoading, products}) => {
+    const [search, setSearch] = useState("")
+    const filteredProduct = useSelector(selectFilterProduct)
+    const dispatch = useDispatch()
     const shortenText = (text, n) => {
         if (text.length > n) {
           const shortenedText = text.substring(0, n).concat("...");
@@ -12,7 +19,9 @@ const ProductList = ({isLoading, products}) => {
         }
         return text;
       };
-
+      useEffect(()=>{
+        dispatch(FILTER_PRODUCT({search, products }))
+      },[search, products, dispatch])
   return (
     <div className='product-list'>
         <hr/>
@@ -22,7 +31,7 @@ const ProductList = ({isLoading, products}) => {
                 <h3>Inverntory Items</h3>
             </span>
             <span>
-                <h3>Search Product</h3>
+                <Search value={search} onChange={(e)=>{setSearch(e.target.value)}}/>
             </span>
         </div>
         {isLoading && <SpiningImg/>}
@@ -42,7 +51,7 @@ const ProductList = ({isLoading, products}) => {
                 </tr>
             </thead>
             <tbody>
-                {products.map((item, index)=>{
+                {filteredProduct.map((item, index)=>{
                     const {_id, name,category, quantity, value, price } = item
                     return (<tr key={_id}>
                         <td>{index + 1}</td>

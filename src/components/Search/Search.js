@@ -2,9 +2,9 @@ import React from 'react'
 import style from "./Search.module.scss"
 import {BiSearch} from "react-icons/bi"
 
-const Search = (value, onChange) => {
+const Search = ({value, onChange}) => {
   return (
-    <div className={style.Search}>
+    <div className={style.search}>
        <BiSearch size={18} className={style.icon}/>
        <input type="text" placeholder="Search Product" value={value} onChange={onChange}/>
     
