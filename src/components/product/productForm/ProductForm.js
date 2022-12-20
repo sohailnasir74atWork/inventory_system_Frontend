@@ -2,7 +2,7 @@ import React from 'react'
 import "./productForm.scss"
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import Cards from '../cards/Cards';
+import Cards from '../../cards/Cards';
 
 const ProductForm = ({
     product,
